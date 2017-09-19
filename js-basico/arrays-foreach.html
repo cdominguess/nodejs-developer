@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<title>Percorrendo arrays com forEach</title>
+	</head>
+	<body>
+		<h2>Percorrendo arrays com forEach</h2>
+
+		<script type="text/javascript">
+			var arrayItens = [
+				'teste de frase 1',
+				'outra frase',
+				'alguma coisa',
+				'qualquer coisa',
+				'trabalhando com arrays',
+				'efetuando a busca em um array'
+			];
+
+			var string = '<pre>';
+			arrayItens.forEach(function(valor, chave) {
+				string += "\t&raquo; " + chave + ": " + valor + "<br/>";
+			});
+			string += '</pre>';
+
+			document.write(string);
+		</script>
+	</body>
+</html>
