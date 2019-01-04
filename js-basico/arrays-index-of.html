@@ -1,76 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-	<head>
-		<meta charset="utf-8">
-		<title>Trabalhando pesquisa em arrays utilizando indexOf e lastIndexOf</title>
-	</head>
-	<body>
-		<script type="text/javascript">
-			var arr1 = ['laranja', 'azul', 'vermelho', 'azul', 'verde'];
-		</script>
+    <head>
+        <meta charset="utf-8">
+        <title>Trabalhando pesquisa em arrays utilizando indexOf e lastIndexOf</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var arr1 = ['laranja', 'azul', 'vermelho', 'azul', 'verde'];
+        </script>
 
-		<h2>Pesquisa em arrays utilizando indexOf <code>arr.indexOf(item);</code>:</h2>
-		<script type="text/javascript">
-			var ret = arr1.indexOf('azul');
-			document.write("Posição de 'azul' no array: " + ret + " - valor: " + arr1[ret]);
-		</script>
+        <h2>Pesquisa em arrays utilizando indexOf <code>arr.indexOf(item);</code>:</h2>
+        <script type="text/javascript">
+            var ret = arr1.indexOf('azul');
+            document.write("Posição de 'azul' no array: " + ret + " - valor: " + arr1[ret]);
+        </script>
 
-		<h2>Pesquisa em arrays utilizando indexOf a partir de uma posição <code>arr.indexOf(item, posicao);</code>:</h2>
-		<script type="text/javascript">
-			var ret = arr1.indexOf('azul', 3);
-			document.write("Posição de 'azul' no array: " + ret + " - valor: " + arr1[ret]);
-		</script>
+        <h2>Pesquisa em arrays utilizando indexOf a partir de uma posição <code>arr.indexOf(item, posicao);</code>:</h2>
+        <script type="text/javascript">
+            var ret = arr1.indexOf('azul', 3);
+            document.write("Posição de 'azul' no array: " + ret + " - valor: " + arr1[ret]);
+        </script>
 
-		<h2>Pesquisa em arrays utilizando lastIndexOf <code>arr.indexOf(item);</code>:</h2>
-		<script type="text/javascript">
-			var ret = arr1.lastIndexOf('azul');
-			document.write("Posição de 'azul' no array: " + ret + " - valor: " + arr1[ret]);
-		</script>
+        <h2>Pesquisa em arrays utilizando lastIndexOf <code>arr.indexOf(item);</code>:</h2>
+        <script type="text/javascript">
+            var ret = arr1.lastIndexOf('azul');
+            document.write("Posição de 'azul' no array: " + ret + " - valor: " + arr1[ret]);
+        </script>
 
-		<h2>Pesquisa na prática com indexOf e lastIndexOf</h2>
-		<p>
-			Digite o valor:
-			<input type="text" name="valor" id="valor" size="30" />
-			<button onclick="buscar();">OK</button>
-		</p>
+        <h2>Pesquisa na prática com indexOf e lastIndexOf</h2>
+        <p>
+            Digite o valor:
+            <input type="text" name="valor" id="valor" size="30" />
+            <button onclick="buscar();">OK</button>
+        </p>
 
-		Resultado:
-		<p id="resultado"></p>
+        Resultado:
+        <p id="resultado"></p>
 
-		<script type="text/javascript">
-			var arrayItens = [
-				'teste de frase 1',
-				'outra frase',
-				'alguma coisa',
-				'qualquer coisa',
-				'trabalhando com arrays',
-				'efetuando a busca em um array'
-			];
+        <script type="text/javascript">
+            var arrayItens = [
+                'teste de frase 1',
+                'outra frase',
+                'alguma coisa',
+                'qualquer coisa',
+                'trabalhando com arrays',
+                'efetuando a busca em um array'
+            ];
 
-			function buscar() {
-				var testKey = null;
-				resultado = '';
+            function buscar() {
+                var testKey = null;
+                resultado = '';
 
-				resultado += '<pre><b>Itens do array para pesquisa:</b><br/>&nbsp;&nbsp;&raquo; ';
-				resultado += arrayItens.join('<br/>&nbsp;&nbsp;&raquo; ');
-				resultado += '</pre>';
+                resultado += '<pre><b>Itens do array para pesquisa:</b><br/>&nbsp;&nbsp;&raquo; ';
+                resultado += arrayItens.join('<br/>&nbsp;&nbsp;&raquo; ');
+                resultado += '</pre>';
 
-				valorBuscar = document.getElementById('valor').value;
+                valorBuscar = document.getElementById('valor').value;
 
-				for (chave in arrayItens) {
-					var auxArr = arrayItens[chave].split(' ');
-					for (chaveAux in auxArr) {
-						if (auxArr.indexOf(valorBuscar) !== -1) {
-							if (testKey !== chave) {
-								testKey = chave;
-								resultado += 'Encontrou a palavra ' + valorBuscar + ' em: ' + arrayItens[chave] + '<br/>';
-							}
-						}
-					}
-				}
+                for (chave in arrayItens) {
+                    var auxArr = arrayItens[chave].split(' ');
+                    for (chaveAux in auxArr) {
+                        if (auxArr.indexOf(valorBuscar) !== -1) {
+                            if (testKey !== chave) {
+                                testKey = chave;
+                                resultado += 'Encontrou a palavra ' + valorBuscar + ' em: ' + arrayItens[chave] + '<br/>';
+                            }
+                        }
+                    }
+                }
 
-				document.getElementById('resultado').innerHTML = resultado;
-			}
-		</script>
-	</body>
+                document.getElementById('resultado').innerHTML = resultado;
+            }
+        </script>
+    </body>
 </html>
