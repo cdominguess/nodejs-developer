@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <title>Requisição com Axios</title>
+
+    <style type="text/css">
+        p.bg-danger {
+            width: 59%;
+            margin: 0px auto;
+            padding: 10px;
+            display: none;
+        }
+
+        .table {
+            width: 60%;
+            margin: 0px auto;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .right {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a id="nav-title" class="navbar-brand" href="index2.html">&raquo; Pesquisa de repositórios no GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="form-inline text-center">
+        <div class="form-group">
+            <input type="text" maxlength="30" class="form-control" id="nome-pesquisar" placeholder="Nome do usuário" />
+        </div>
+        <div class="form-group">
+            <span id="btn-atualizar">
+                <button id="btn-pesquisar" class="btn btn-success">Pesquisar</button>
+                <button id="btn-reset" class="btn btn-link">Cancelar</button>
+            </span>
+        </div>
+    </div>
+
+    <br />
+    <p id="msg-erro" class="bg-danger"></p>
+    <br />
+
+    <div class="container-fluid">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="left">Nome</th>
+                    <th class="left">Descrição</th>
+                    <th class="center">Criado em</th>
+                </tr>
+            </thead>
+            <tbody id="lista-repositorios"></tbody>
+        </table>
+    </div>
+    <script src="js/axios.js"></script>
+    <script type="text/javascript">
+        let campo = document.getElementById('nome-pesquisar');
+        let submit = document.getElementById('btn-pesquisar');
+        let reset = document.getElementById('btn-reset');
+        let lista = document.getElementById('lista-repositorios');
+        let erros = document.getElementById('msg-erro');
+
+        let templateTable = '<tr><td colspan="3" class="center">[TEXTO]</td></tr>';
+        lista.innerHTML = templateTable.replace('[TEXTO]', 'Digite um usuário para pesquisar.');
+
+        submit.onclick = function () {
+            if (campo.value === '') {
+                erros.style.display = 'block';
+                erros.innerText = 'É necessário preencher o nome do usuário.';
+                campo.focus();
+                setTimeout(function () {
+                    erros.innerText = '';
+                    erros.style.display = 'none';
+                }, 4000);
+                return false;
+            }
+
+            axios.get('https://api.github.com/users/' + campo.value + '/repos')
+                .then(function (res) {
+                    lista.innerHTML = templateTable.replace('[TEXTO]', 'Carregando ...');
+
+                    let resposta = res.data;
+                    if (resposta.length > 0) {
+                        let html = '';
+                        for (i in resposta) {
+                            let objData = new Date(resposta[i].created_at);
+
+                            html += '<tr>';
+                            html += '   <td>' + resposta[i].name + '</td>';
+                            html += '   <td>' + resposta[i].description + '</td>';
+                            html += '   <td class="center">' + objData.toLocaleString("pt-BR") + '</td>';
+                            html += '</tr>';
+                        }
+                        lista.innerHTML = html;
+                    } else {
+                        lista.innerHTML = templateTable.replace('[TEXTO]', 'O usuário <b>' + campo.value + '</b> não possui nenhum repositório.');
+                    }
+
+                })
+                .catch(function (err) {
+                    lista.innerHTML = templateTable.replace('[TEXTO]', 'Usuário <b>' + campo.value + '</b> não localizado no Github.');
+                });
+        };
+
+        reset.onclick = function () {
+
+        }
+    </script>
+</body>
+
+</html>
