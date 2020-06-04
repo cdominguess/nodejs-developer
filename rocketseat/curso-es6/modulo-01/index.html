@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="./bundle.js"></script>
+    <script type="text/javascript">
+        let objTeste = new Teste();
+        let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        console.log('Testando array filter - retornar valores pares:');
+        console.log(objTeste.filtrarParImpar(arr, 'P'));
+        console.log('Testando array filter - retornar valores ímpares:');
+        console.log(objTeste.filtrarParImpar(arr, 'I'));
+
+        console.log('Testando array map - retornar se valor é pares OU ímpar:');
+        console.log(objTeste.retornarParImpar(arr, 'P'));
+        
+        console.log('Testando function com valores default:');
+        console.log(objTeste.somarValores());
+        console.log(objTeste.somarValores(1, 2));
+        
+        console.log('Testando function com N valores passados como parâmetro:');
+        console.log(objTeste.somarVariosValores(5,10,15));
+        
+
+    </script>
+</body>
+
+</html>

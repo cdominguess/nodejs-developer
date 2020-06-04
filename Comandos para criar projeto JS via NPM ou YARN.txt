@@ -1,0 +1,37 @@
+Criando um projeto JS com NPM - na raíz do projeto digite os comandos:
+npm init
+npm install
+npm install babel-cli
+npm install babel-preset-es2015
+npm install babel-preset-env
+npm install babel-cli --save-dev
+npm install babel-preset-es2015 --save-dev
+npm install babel-preset-env --save-dev
+echo {"presets": ["es2015"]} > .babelrc
+
+--> Executar o script: npm run babel
+
+
+Criando um projeto JS com YARN - na raíz do projeto digite os comandos:
+yarn init
+yarn add @babel/cli -D
+yarn add @babel/preset-env -D
+yarn add @babel/core -D
+yarn add @babel/plugin-proposal-object-rest-spread -D
+yarn add webpack webpack-cli -D
+yarn add babel-loader@8.0.0-beta.0 -D
+yarn add webpack-dev-server -D
+yarn add @babel/plugin-transform-async-to-generator -D
+yarn add @babel/polyfill -D
+yarn add axios
+
+--> criar o arquivo .babelrc com o conteúdo:
+{
+    "presets": ["@babel/preset-env"],
+    "plugins": ["@babel/plugin-proposal-object-rest-spread"]
+}
+--> Adicionar no package.json os scripts para executar o babel em DEV:
+"scripts": {
+    "dev": "babel ./main.js -o ./bundle.js -w"
+}
+--> Executar o script: yarn [SCRIPT]
